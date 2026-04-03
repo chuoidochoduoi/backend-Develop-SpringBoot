@@ -1,10 +1,11 @@
 package org.example.springboottest.controller;
 
 import jakarta.annotation.PostConstruct;
-import org.example.springboottest.dto.ApiResponse;
-import org.example.springboottest.dto.CourseCreateRequest;
+import org.example.springboottest.dto.*;
+import org.example.springboottest.model.CourseStatus;
 import org.example.springboottest.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -48,6 +49,44 @@ public class CourseController {
 //
 //    }
 //
+
+
+    @GetMapping()
+    public ResponseEntity<ApiResponse<PageResponse<CourseResponse>>> displayCourse(@RequestParam(required = false,defaultValue = "3")  int page,
+                                                                                   @RequestParam(required = false, defaultValue = "3")  int sizeBy,
+                                                                                   @RequestParam(required = false)  String sort,
+                                                                                   @RequestParam(required = false)  String direction,
+                                                                                   @RequestParam(required = false,defaultValue = "PUBLISHED") CourseStatus status) {
+
+        try {
+            PageResponse<CourseResponse> courseResponses = courseService.getPagedCourses(page,sizeBy,sort,direction,status);
+            return ResponseEntity.ok(ApiResponse.ok(courseResponses));
+
+        } catch (RuntimeException e) {
+
+            return ResponseEntity.status(404).body(ApiResponse.error(e.getMessage()));
+        }
+
+
+    }
+    @GetMapping("/v2")
+    public ResponseEntity<ApiResponse<PageResponse<CourseResponseV2>>> displayCoursev2(@RequestParam(required = false,defaultValue = "3")  int page,
+                                                                                   @RequestParam(required = false, defaultValue = "3")  int sizeBy,
+                                                                                   @RequestParam(required = false)  String sort,
+                                                                                   @RequestParam(required = false)  String direction,
+                                                                                   @RequestParam(required = false,defaultValue = "PUBLISHED") CourseStatus status) {
+
+        try {
+            PageResponse<CourseResponseV2> courseResponses = courseService.getPagedCoursesV2(page,sizeBy,sort,direction,status);
+            return ResponseEntity.ok(ApiResponse.ok(courseResponses));
+
+        } catch (RuntimeException e) {
+
+            return ResponseEntity.status(404).body(ApiResponse.error(e.getMessage()));
+        }
+
+
+    }
     @PostMapping
     public ResponseEntity<ApiResponse<Void>> create(@RequestBody CourseCreateRequest courseCreateRequest) {
 
