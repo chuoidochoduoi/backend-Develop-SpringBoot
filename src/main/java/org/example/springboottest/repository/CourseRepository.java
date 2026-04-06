@@ -29,4 +29,7 @@ public interface CourseRepository extends JpaRepository<Course, Integer> {
             WHERE c.status = :status""")
     public Page<CourseResponseV2> findAllByStatusV2(@Param("status") CourseStatus status, Pageable pageable);
 
+
+
+
 }
