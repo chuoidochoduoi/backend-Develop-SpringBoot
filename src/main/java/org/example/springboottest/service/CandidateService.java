@@ -24,6 +24,7 @@ public class CandidateService {
        candidate.setEmail(candidateCreateDTO.getEmail());
        candidate.setFullName(candidateCreateDTO.getFullName());
        candidate.setYearsOfExperience(candidateCreateDTO.getYearsOfExperience());
+       candidate.setPhone(candidateCreateDTO.getPhone());
        candidateRepository.save(candidate);
 
 
