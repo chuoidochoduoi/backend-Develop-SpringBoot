@@ -1,0 +1,32 @@
+//package org.example.springboottest.repository;
+//
+//import org.example.springboottest.dto.TicketSummaryResponse;
+//import org.example.springboottest.model.ParkingTicket;
+//import org.springframework.data.jpa.repository.JpaRepository;
+//import org.springframework.data.jpa.repository.Query;
+//import org.springframework.stereotype.Repository;
+//
+//import java.util.List;
+//import java.util.Optional;
+//
+//@Repository
+//public interface ParkingTicketRepository extends JpaRepository<ParkingTicket, Integer> {
+//
+//    Optional<ParkingTicket> findTopByVehicleIdAndCheckOutTimeIsNullOrderByCheckInTimeDesc(int vehicleId);
+//
+//
+//    @Query("""
+//        SELECT new org.example.springboottest.dto.TicketSummaryResponse(
+//            t.id,
+//            v.licensePlate,
+//            z.name,
+//            t.checkInTime,
+//            t.checkOutTime
+//        )
+//        FROM ParkingTicket t
+//        JOIN t.vehicle v
+//        JOIN t.zone z
+//        WHERE DATE(t.checkInTime) = CURRENT_DATE
+//    """)
+//    List<TicketSummaryResponse> findTodayTickets();
+//}

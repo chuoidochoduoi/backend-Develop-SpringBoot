@@ -1,4 +1,4 @@
-package org.example.springboottest.dto;
+package org.example.springboottest.dto.Request;
 
 
 import jakarta.validation.constraints.*;

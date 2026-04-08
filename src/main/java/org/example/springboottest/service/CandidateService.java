@@ -1,8 +1,8 @@
 package org.example.springboottest.service;
 
 
-import org.example.springboottest.dto.CandidateCreateDTO;
-import org.example.springboottest.dto.CandidateUpdateDTO;
+import org.example.springboottest.dto.Request.CandidateCreateDTO;
+import org.example.springboottest.dto.Request.CandidateUpdateDTO;
 import org.example.springboottest.model.Candidate;
 import org.example.springboottest.repository.CandidateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
